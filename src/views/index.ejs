@@ -1,0 +1,36 @@
+<%- include("includes/head.ejs") %>
+  
+  <%- include("includes/nav.ejs") %>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-2 my-3"></div>
+        <div class="col-lg-8">
+          <h1 class="text-center">Agenda</h1>
+          <p class="text-center lead">Seus contatos estao abaixo</p>
+
+          <%- include('includes/messages') %>
+          <% if(contatos.length > 0) { %>
+            <div class="responsive-table">
+              <table class="table my-3">
+                <% contatos.forEach(contato => { %>
+                  
+                  <tr>
+                    <td><%=contato.name%></td>
+                    <td><%=contato.lastname%></td>
+                    <td><%=contato.phone%></td>
+                    <td><%=contato.email%></td>
+                    <td><a href="/contato/index/<%= contato._id%>">Editar</a></td>
+                    <td><a class="text-danger" href="/contato/delete/<%= contato._id%>">Apagar</a></td>
+                  </tr>
+                  <%})%>
+                </table>
+              </div>
+            <% } else {%>
+              <p>Voce ainda nao possui contatos!</p>
+            <% }%>
+        </div>
+        <div class="col-lg-2"></div>
+      </div>
+    </div>
+ <%- include("includes/footer.ejs") %>

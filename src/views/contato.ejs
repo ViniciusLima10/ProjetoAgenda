@@ -1,0 +1,40 @@
+<%- include("includes/head.ejs") %>
+  
+  <%- include("includes/nav.ejs") %>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-2 my-3"></div>
+        <div class="col-lg-8">
+          <h1 class="text-center">Contato</h1>
+          <p class="text-center lead">Crie ou edite seu contato abaixo</p>
+
+          <%- include('includes/messages') %>
+
+          <% if(contato._id) { %>
+          <form class="form-cadastro" action="/contato/edit/<%=contato._id %>" method="POST">
+            <% } else{  %>
+              <form class="form-cadastro" action="/contato/create" method="POST">
+            <% } %>
+            <input type="hidden" name="_csrf" value=<%= csrfToken %>>
+            <div class="form-group">
+              <label>Nome</label>
+              <input type="text" value="<%= contato.name %>" class="form-control" name="name">
+            </div>
+            <div class="form-group">
+              <label>Sobrenome</label>
+              <input type="text" value="<%= contato.lastname %>" class="form-control" name="lastname">
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" value="<%= contato.email %>" class="form-control" name="email">
+            </div>
+            <div class="form-group">
+              <label>Telefone</label>
+              <input type="tel"  value="<%= contato.phone %>" class="form-control" name="phone">
+            </div>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        <div class="col-lg-2"></div>
+      </div>
+    </div>
+ <%- include("includes/footer.ejs") %>
